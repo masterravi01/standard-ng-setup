@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../core/services/auth.service';
-import { CrudService } from '../../core/services/crud.service';
-import { APIConstant } from '../../core/constants/APIConstant';
+import { APIConstant } from '../../../core/constants/APIConstant';
+import { AuthService } from '../../../core/services/auth.service';
+import { CrudService } from '../../../core/services/crud.service';
 
 @Component({
-  selector: 'app-forgotpassword',
-  standalone: true,
-  imports: [],
-  templateUrl: './forgotpassword.component.html',
-  styleUrl: './forgotpassword.component.css',
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.css',
 })
-export class ForgotpasswordComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   userInfo: any;
   constructor(
     private authService: AuthService,

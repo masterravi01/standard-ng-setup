@@ -21,7 +21,7 @@ export const tokenInterceptor: HttpInterceptorFn = (
 
   return next(authReq).pipe(
     catchError((err: any) => {
-      if (err instanceof HttpErrorResponse && err.status === 403) {
+      if (err instanceof HttpErrorResponse && err.status === 401) {
         // Refresh token if a 403 Forbidden error is encountered
         return from(authService.refreshToken()).pipe(
           switchMap(() => {

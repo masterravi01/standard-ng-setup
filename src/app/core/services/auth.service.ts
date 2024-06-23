@@ -55,7 +55,7 @@ export class AuthService {
         .then((response: any) => {
           console.log(response);
           this.userInfoService.setUserInfo(response.data);
-          this.router.navigate(['/forgot']);
+          this.router.navigate(['/dashboard']);
         })
         .catch((error) => {
           console.error('There was an error!', error);
