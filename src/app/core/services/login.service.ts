@@ -10,6 +10,6 @@ export class LoginService {
   constructor(private master: MasterService) {}
 
   getAllUsers() {
-    this.master.get(environment.url + APIConstant.GET_ALL_EMPLOYEE);
+    this.master.Get(environment.url + APIConstant.GET_ALL_EMPLOYEE);
   }
 }

@@ -7,7 +7,10 @@ export const APIConstant = {
   },
   ATTENDANCE: {},
   LOGIN: {
-    LOGIN: 'login',
+    LOGIN: 'hotelpro/user/login',
     FORGOT_PASSWORD: 'forgotpassword',
   },
+  LOGOUT: 'hotelpro/user/logout',
+  REFRESH_TOKEN: 'hotelpro/user/refresh-token',
+  GET_USER: 'hotelpro/user/current-user',
 };
