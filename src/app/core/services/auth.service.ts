@@ -10,11 +10,11 @@ import { UserInfoService } from './user-info.service';
 })
 export class AuthService {
   constructor(
-    private readonly httpClient: HttpClient,
+    private httpClient: HttpClient,
     private crudService: CrudService,
     private router: Router,
     private userInfoService: UserInfoService
-  ) {}
+  ) { }
 
   async logout(redirectTo: boolean = true): Promise<void> {
     this.crudService
@@ -68,6 +68,19 @@ export class AuthService {
   getUserInfo(): any {
     return this.userInfoService.getUserInfo();
   }
+  // getUserInfo(): any {
+  //   const obj = {
+  //     name: 'ravi',
+  //   }
+  //   const httpOptions = {
+  //     // headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+
+  //     withCredentials: true,
+  //     observe: 'body' as 'response',
+  //   };
+  //   return this.httpClient.get('http://localhost:3000/ezyinn/', httpOptions)
+  //   return of(obj).pipe(delay(2000));
+  // }
 
   clearLocalStorageAndRedirect(): void {
     this.userInfoService.clearUserInfo();

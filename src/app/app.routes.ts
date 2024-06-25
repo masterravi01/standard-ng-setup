@@ -1,6 +1,8 @@
+import { userDetailsResolver } from './pages/user-details.resolver';
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { SignupComponent } from './pages/signup/signup.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +22,10 @@ export const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
-    canActivate: [authGuard],
+  },
+  {
+    path: 'profile',
+    component: UserProfileComponent,
+    resolve: { userDetails: userDetailsResolver }
   },
 ];
