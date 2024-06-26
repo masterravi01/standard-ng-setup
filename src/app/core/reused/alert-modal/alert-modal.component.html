@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-center">
+  <ngb-alert
+    *ngIf="message.text"
+    #selfClosingAlert
+    [type]="message.type"
+    (closed)="message.text = ''"
+    style="position: absolute; top: 60px"
+  >
+    {{ message.text }}
+  </ngb-alert>
+</div>
