@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
-
+import { environment } from '../../../environments/environment.development';
 @Injectable({
   providedIn: 'root',
 })
 export class UserInfoService {
-  private readonly storageKey = 'userInfo';
-  private readonly encryptionKey = 'your-encryption-key'; // Use a secure key management approach
+  private readonly storageKey = environment.storageKey;
+  private readonly encryptionKey = environment.crypto_encryption_Key; // Use a secure key management approach
 
   setUserInfo(data: any): void {
     try {
