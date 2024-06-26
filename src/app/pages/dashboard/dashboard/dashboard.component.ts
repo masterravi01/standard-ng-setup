@@ -15,7 +15,9 @@ export class DashboardComponent implements OnInit {
     private crudService: CrudService
   ) {}
   ngOnInit(): void {
-    this.userInfo = this.authService.getUserInfo();
+    const u = this.authService.getUserInfo();
+
+    this.userInfo = u?.user;
     console.log(this.userInfo);
     this.crudService
       .post(APIConstant.GET_USER)

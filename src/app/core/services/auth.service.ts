@@ -61,7 +61,7 @@ export class AuthService {
   async login(credentials: any): Promise<void> {
     try {
       this.crudService
-        .post(APIConstant.LOGIN.LOGIN, credentials)
+        .post(APIConstant.LOGIN, credentials)
         .then((response: any) => {
           console.log(response);
           this.userInfoService.setUserInfo(response.data);
