@@ -33,6 +33,7 @@ export const tokenInterceptor: HttpInterceptorFn = (
           filter((inProgress) => !inProgress),
           take(1),
           switchMap(() => {
+            authService.tokenRefreshInProgressSubject.next(true);
             return from(authService.refreshToken()).pipe(
               switchMap(() => {
                 const newAuthReq = req.clone({
@@ -55,6 +56,9 @@ export const tokenInterceptor: HttpInterceptorFn = (
         console.error('HTTP error:', err);
         return throwError(() => err);
       }
+    }),
+    finalize(() => {
+      authService.tokenRefreshInProgressSubject.next(false);
     })
   );
 };

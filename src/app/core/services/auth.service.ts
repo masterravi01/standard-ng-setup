@@ -4,7 +4,7 @@ import { APIConstant } from '../constants/APIConstant';
 import { Router } from '@angular/router';
 import { UserInfoService } from './user-info.service';
 import { BehaviorSubject, from, Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, finalize } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -49,13 +49,11 @@ export class AuthService {
         this.userInfoService.setUserInfo(response.data);
       }),
       catchError((error) => {
-        console.error('There was an error!', error);
-        this.logout();
+        console.error('Error refreshing token:', error);
         return throwError(() => error);
       }),
-      tap({
-        next: () => this.tokenRefreshInProgressSubject.next(false),
-        error: () => this.tokenRefreshInProgressSubject.next(false),
+      finalize(() => {
+        this.tokenRefreshInProgressSubject.next(false);
       })
     );
   }

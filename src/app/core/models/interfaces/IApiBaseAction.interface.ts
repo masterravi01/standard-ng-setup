@@ -16,7 +16,7 @@ export interface IApiBaseActions {
 
 export interface IApiBaseResponse {
   success?: boolean;
-  status: boolean;
+  status: number;
   response: any;
   message: string;
 }
