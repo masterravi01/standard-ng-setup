@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { CrudService } from './crud.service';
 import { APIConstant } from '../constants/APIConstant';
 import { Router } from '@angular/router';
 import { UserInfoService } from './user-info.service';
+import { BehaviorSubject, from, Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  public tokenRefreshInProgressSubject = new BehaviorSubject<boolean>(false);
+
   constructor(
-    private readonly httpClient: HttpClient,
     private crudService: CrudService,
     private router: Router,
     private userInfoService: UserInfoService
   ) {}
+
+  get tokenRefreshInProgress(): Observable<boolean> {
+    return this.tokenRefreshInProgressSubject.asObservable();
+  }
 
   async logout(redirectTo: boolean = true): Promise<void> {
     this.crudService
@@ -35,17 +41,23 @@ export class AuthService {
     return this.userInfoService.getUserInfo() !== null;
   }
 
-  async refreshToken(): Promise<void> {
-    this.crudService
-      .post(APIConstant.REFRESH_TOKEN)
-      .then((response: any) => {
+  refreshToken(): Observable<any> {
+    this.tokenRefreshInProgressSubject.next(true);
+    return from(this.crudService.post(APIConstant.REFRESH_TOKEN)).pipe(
+      tap((response: any) => {
         console.log(response);
         this.userInfoService.setUserInfo(response.data);
-      })
-      .catch((error) => {
+      }),
+      catchError((error) => {
         console.error('There was an error!', error);
         this.logout();
-      });
+        return throwError(() => error);
+      }),
+      tap({
+        next: () => this.tokenRefreshInProgressSubject.next(false),
+        error: () => this.tokenRefreshInProgressSubject.next(false),
+      })
+    );
   }
 
   async login(credentials: any): Promise<void> {

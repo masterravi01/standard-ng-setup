@@ -22,4 +22,11 @@ export const routes: Routes = [
     component: SignupComponent,
     canActivate: [authGuard],
   },
+  {
+    path: 'parent',
+    loadChildren: () =>
+      import('../app/pages/learing/learing.module').then(
+        (m) => m.LearingModule
+      ),
+  },
 ];

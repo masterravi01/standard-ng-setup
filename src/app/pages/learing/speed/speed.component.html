@@ -1,0 +1,8 @@
+<app-reuse-alert
+  [isAlertVisable]="showAlert"
+  [AlertMsg]="alertMsg"
+></app-reuse-alert>
+
+<button type="button" class="btn btn-danger" (click)="callApi()">Danger</button>
+<a routerLink="/login">login</a>
+<div *ngIf="$myUser | async">{{ $myUser }}</div>
