@@ -23,18 +23,16 @@ export class AuthService {
   }
 
   async logout(redirectTo: boolean = true): Promise<void> {
-    this.crudService
-      .post(APIConstant.LOGOUT)
-      .then((response: any) => {
-        console.log(response);
-        this.userInfoService.clearUserInfo();
-        if (redirectTo) {
-          this.router.navigate(['/login']);
-        }
-      })
-      .catch((error) => {
-        console.error('There was an error!', error);
-      });
+    try {
+      const response = await this.crudService.post(APIConstant.LOGOUT);
+      console.log(response);
+      this.userInfoService.clearUserInfo();
+      if (redirectTo) {
+        this.router.navigate(['/login']);
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   }
 
   isAuthenticated(): boolean {
@@ -60,16 +58,13 @@ export class AuthService {
 
   async login(credentials: any): Promise<void> {
     try {
-      this.crudService
-        .post(APIConstant.LOGIN, credentials)
-        .then((response: any) => {
-          console.log(response);
-          this.userInfoService.setUserInfo(response.data);
-          this.router.navigate(['/dashboard']);
-        })
-        .catch((error) => {
-          console.error('There was an error!', error);
-        });
+      const response = await this.crudService.post(
+        APIConstant.LOGIN,
+        credentials
+      );
+      console.log(response);
+      this.userInfoService.setUserInfo(response.data);
+      this.router.navigate(['/dashboard']);
     } catch (error) {
       console.error('Error during login:', error);
     }
@@ -80,16 +75,14 @@ export class AuthService {
   }
 
   async getUserProfile(): Promise<any> {
-    return this.crudService
-      .post(APIConstant.GET_USER)
-      .then((response: any) => {
-        console.log(response);
-        return response;
-      })
-      .catch((error: any) => {
-        console.error('There was an error!', error);
-        throw error;
-      });
+    try {
+      const response = await this.crudService.post(APIConstant.GET_USER);
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.error('Error getting user profile:', error);
+      throw error;
+    }
   }
 
   clearLocalStorageAndRedirect(): void {

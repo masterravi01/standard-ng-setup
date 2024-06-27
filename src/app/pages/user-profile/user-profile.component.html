@@ -1,3 +1,7 @@
 <div>
   {{ game$ | async | json }}
 </div>
+
+<button class="btn btn-primary" (click)="showSuccess()">s</button>
+<button class="btn btn-primary" (click)="showError()">E</button>
+<button class="btn btn-primary" (click)="showConfirmation()">C</button>

@@ -1,4 +1,3 @@
-// services/crud.service.ts
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
@@ -10,25 +9,25 @@ import { MasterService } from './master.service';
 export class CrudService {
   constructor(private masterService: MasterService) {}
 
-  get(endpoint: string, params?: any) {
+  async get(endpoint: string, params?: any): Promise<any> {
     return lastValueFrom(
       this.masterService.Get(`${environment.url}` + endpoint, params)
     );
   }
 
-  post(endpoint: string, body?: any, params?: any) {
+  async post(endpoint: string, body?: any, params?: any): Promise<any> {
     return lastValueFrom(
       this.masterService.Post(`${environment.url}` + endpoint, body, params)
     );
   }
 
-  put(endpoint: string, body: any) {
+  async put(endpoint: string, body: any): Promise<any> {
     return lastValueFrom(
       this.masterService.Put(`${environment.url}` + endpoint, body)
     );
   }
 
-  delete(endpoint: string, body?: any, params?: any) {
+  async delete(endpoint: string, body?: any, params?: any): Promise<any> {
     return lastValueFrom(
       this.masterService.Delete(`${environment.url}` + endpoint, body, params)
     );

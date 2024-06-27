@@ -1,12 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { inject } from '@angular/core';
-import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  ResolveFn,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const userDetailsResolver: ResolveFn<Object> = (
+export const userDetailsResolver: ResolveFn<any> = (
   route: ActivatedRouteSnapshot,
-  state
+  state: RouterStateSnapshot
 ) => {
-  return inject(AuthService).getUserProfile();
+  return inject(AuthService)
+    .getUserProfile()
+    .catch((error) => {
+      console.error('Error in userDetailsResolver:', error);
+      return null;
+    });
 };

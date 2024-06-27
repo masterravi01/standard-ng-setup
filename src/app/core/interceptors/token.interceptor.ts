@@ -5,6 +5,7 @@ import {
 } from '@angular/common/http';
 import { LoaderService } from '../services/loader.service';
 import { inject } from '@angular/core';
+import { finalize } from 'rxjs';
 
 export const tokenInterceptor: HttpInterceptorFn = (
   req: HttpRequest<any>,
@@ -15,5 +16,9 @@ export const tokenInterceptor: HttpInterceptorFn = (
     withCredentials: true,
   });
   loaderService.show();
-  return next(authReq);
+  return next(authReq).pipe(
+    finalize(() => {
+      loaderService.hide();
+    })
+  );
 };
