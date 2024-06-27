@@ -1,4 +1,4 @@
-import { userDetailsResolver } from './pages/user-details.resolver';
+import { userDetailsResolver } from './core/resolvers/user-details.resolver';
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -19,11 +19,6 @@ export const routes: Routes = [
     component: SignupComponent,
   },
   {
-    path: 'profile',
-    component: UserProfileComponent,
-    resolve: { userDetails: userDetailsResolver }
-  },
-  {
     path: 'parent',
     loadChildren: () =>
       import('../app/pages/learing/learing.module').then(
@@ -41,6 +36,11 @@ export const routes: Routes = [
             (m) => m.DashboardModule
           ),
         canActivate: [authGuard],
+      },
+      {
+        path: 'profile',
+        component: UserProfileComponent,
+        resolve: { userDetails: userDetailsResolver },
       },
     ],
   },

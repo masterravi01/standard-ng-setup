@@ -16,7 +16,7 @@ export class AuthService {
     private crudService: CrudService,
     private router: Router,
     private userInfoService: UserInfoService
-  ) { }
+  ) {}
 
   get tokenRefreshInProgress(): Observable<boolean> {
     return this.tokenRefreshInProgressSubject.asObservable();
@@ -78,19 +78,19 @@ export class AuthService {
   getUserInfo(): any {
     return this.userInfoService.getUserInfo();
   }
-  // getUserInfo(): any {
-  //   const obj = {
-  //     name: 'ravi',
-  //   }
-  //   const httpOptions = {
-  //     // headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 
-  //     withCredentials: true,
-  //     observe: 'body' as 'response',
-  //   };
-  //   return this.httpClient.get('http://localhost:3000/ezyinn/', httpOptions)
-  //   return of(obj).pipe(delay(2000));
-  // }
+  async getUserProfile(): Promise<any> {
+    return this.crudService
+      .post(APIConstant.GET_USER)
+      .then((response: any) => {
+        console.log(response);
+        return response;
+      })
+      .catch((error: any) => {
+        console.error('There was an error!', error);
+        throw error;
+      });
+  }
 
   clearLocalStorageAndRedirect(): void {
     this.userInfoService.clearUserInfo();

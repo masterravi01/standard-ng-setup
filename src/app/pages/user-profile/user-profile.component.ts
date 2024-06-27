@@ -8,14 +8,16 @@ import { AsyncPipe, CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, AsyncPipe],
   templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.css'
+  styleUrl: './user-profile.component.css',
 })
 export class UserProfileComponent implements OnInit {
   game$!: Observable<any>;
-  constructor(public activatedRoute: ActivatedRoute) { }
+  constructor(public activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.game$ = this.activatedRoute.data.pipe(map((data: { [x: string]: any; }) => data['userDetails']));
-    console.log(this.game$)
+    this.game$ = this.activatedRoute.data.pipe(
+      map((data: { [x: string]: any }) => data['userDetails']?.data)
+    );
+    // this.game$.subscribe((data) => console.log(data)); // Add this line to log the data for debugging
   }
 }
