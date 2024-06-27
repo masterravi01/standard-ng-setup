@@ -1,4 +1,3 @@
-// src/app/services/modal.service.ts
 import { Injectable } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../reused/modal/modal.component';
@@ -19,7 +18,7 @@ export class ModalService {
     const modalRef = this.modalService.open(ModalComponent, {
       size,
       ...options,
-      backdropClass: type != 'confirmation' ? 'backdroptrans' : '',
+      backdropClass: type !== 'confirmation' ? 'backdroptrans' : '',
     });
     modalRef.componentInstance.headerMessage = headerMessage;
     modalRef.componentInstance.message = message;

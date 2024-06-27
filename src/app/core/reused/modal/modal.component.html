@@ -1,9 +1,8 @@
-<!-- src/app/components/modal/modal.component.html -->
 <div class="modal-header">
   <h4
+    *ngIf="type === 'confirmation' && headerMessage"
     class="modal-title"
     id="modal-basic-title"
-    *ngIf="type === 'confirmation' && headerMessage"
     [innerHTML]="sanitizeMsg(headerMessage)"
   ></h4>
   <h6

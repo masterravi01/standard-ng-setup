@@ -18,9 +18,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent implements OnInit, OnDestroy {
-  @Input() message!: string;
-  @Input() headerMessage!: string;
-  @Input() type!: 'success' | 'error' | 'confirmation';
+  @Input() message?: string;
+  @Input() headerMessage?: string;
+  @Input() type: 'success' | 'error' | 'confirmation' = 'confirmation';
   @ViewChild('closeButton', { static: true }) closeButton!: ElementRef;
 
   constructor(
@@ -34,10 +34,11 @@ export class ModalComponent implements OnInit, OnDestroy {
       this.closeButton.nativeElement.focus();
     }
   }
-  sanitizeMsg(s: string) {
-    this.sanitizer.bypassSecurityTrustHtml(s);
-    return s;
+
+  sanitizeMsg(message: string | undefined) {
+    return message ? this.sanitizer.bypassSecurityTrustHtml(message) : '';
   }
+
   ngOnDestroy() {
     document.body.classList.remove('modal-open');
   }

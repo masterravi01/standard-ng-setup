@@ -12,7 +12,7 @@ export interface AlertMessage {
 export class AlertService {
   private alertSubject = new BehaviorSubject<AlertMessage | null>(null);
   alertState$ = this.alertSubject.asObservable();
-  alertVisible = false;
+  private alertVisible = false; // Should be private
 
   customAlert(
     type: 'success' | 'danger' | 'info' | 'warning' | 'primary',
@@ -20,20 +20,25 @@ export class AlertService {
   ): void {
     this.alertSubject.next({ type, message });
     this.alertVisible = true;
+    this.autoClearAlert();
+  }
+
+  successAlert(message: string): void {
+    this.alertSubject.next({ type: 'success', message });
+    this.alertVisible = true;
+    this.autoClearAlert();
+  }
+
+  errorAlert(message: string): void {
+    this.alertSubject.next({ type: 'danger', message });
+    this.alertVisible = true;
+    this.autoClearAlert();
+  }
+
+  private autoClearAlert(): void {
     setTimeout(() => this.clearAlert(), 20000); // Auto-hide after 20 seconds
   }
-  successAlert(message: string): void {
-    const type = 'success';
-    this.alertSubject.next({ type, message });
-    this.alertVisible = true;
-    setTimeout(() => this.clearAlert(), 20000);
-  }
-  errorAlert(message: string): void {
-    const type = 'danger';
-    this.alertSubject.next({ type, message });
-    this.alertVisible = true;
-    setTimeout(() => this.clearAlert(), 20000);
-  }
+
   clearAlert(): void {
     this.alertSubject.next(null); // Use null to clear the alert
     this.alertVisible = false;
