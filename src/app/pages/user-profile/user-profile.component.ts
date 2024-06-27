@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { ModalService } from '../../core/services/modal.service';
+import { AlertService } from '../../core/services/alert.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,7 +16,8 @@ export class UserProfileComponent implements OnInit {
   game$!: Observable<any>;
   constructor(
     public activatedRoute: ActivatedRoute,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -47,5 +49,18 @@ export class UserProfileComponent implements OnInit {
           console.log('no');
         }
       });
+  }
+
+  showSuccessAlert() {
+    this.alertService.successAlert(
+      'This is a success message This is a success message This is a success message This is a success message This is a success message This is a success message This is a success message This is a success message This is a success message!'
+    );
+  }
+
+  showErrorAlert() {
+    this.alertService.customAlert(
+      'danger',
+      'This is an error message This is a success message!'
+    );
   }
 }
