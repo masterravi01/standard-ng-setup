@@ -10,3 +10,7 @@
   Show Success
 </button>
 <button class="btn btn-danger" (click)="showErrorAlert()">Show Error</button>
+<app-ag-grid-table
+  [rowInputData]="userList"
+  [colLabels]="userListLabels"
+></app-ag-grid-table>
