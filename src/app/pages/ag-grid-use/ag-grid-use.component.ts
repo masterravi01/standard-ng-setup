@@ -1,7 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
-import { AgGridAngular } from 'ag-grid-angular';
+import {
+  ColDef,
+  GridApi,
+  GridReadyEvent,
+  ValueGetterParams,
+  ICellRendererParams,
+} from 'ag-grid-community';
+import { AgGridAngular, ICellRendererAngularComp } from 'ag-grid-angular';
+import { ModuleRegistry } from 'ag-grid-community';
+import { ClientSideRowModelModule } from 'ag-grid-community';
+
+ModuleRegistry.registerModules([ClientSideRowModelModule]);
+
+@Component({
+  standalone: true,
+  template: `<button (click)="buttonClicked()">Push Me!</button>`,
+})
+export class CustomButtonComponent implements ICellRendererAngularComp {
+  agInit(params: ICellRendererParams): void {}
+  refresh(params: ICellRendererParams) {
+    return true;
+  }
+  buttonClicked() {
+    alert('clicked');
+  }
+}
+
 @Component({
   selector: 'app-ag-grid-use',
   standalone: true,
@@ -25,9 +50,20 @@ export class AgGridUseComponent implements OnInit {
         return 'EMP-' + item.value;
       },
     },
-    { field: 'name', headerName: 'Name', filter: 'agTextColumnFilter' },
-    { field: 'username', headerName: 'User Name' },
+    {
+      field: 'name',
+      headerName: 'Name',
+      filter: 'agTextColumnFilter',
+      valueGetter: (p: ValueGetterParams) =>
+        p.data.name + ' ' + p.data.username,
+    },
+    {
+      field: 'username',
+      headerName: 'User Name',
+      valueFormatter: (p) => '$-' + p.value.toLocaleString(),
+    },
     { field: 'email', headerName: 'E-mail', editable: true },
+    { field: 'button', cellRenderer: CustomButtonComponent, flex: 1 },
   ];
 
   defaultColDef = {
