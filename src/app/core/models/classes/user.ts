@@ -3,7 +3,7 @@ export class User {
   email: string;
   isEmailVerified?: boolean;
   loginType?: string;
-  role: string;
+  role: 'ADMIN' | 'USER';
   createdAt?: Date;
   updatedAt?: Date;
   username?: string;
@@ -12,7 +12,7 @@ export class User {
 
   constructor() {
     this.email = '';
-    this.role = '';
+    this.role = 'USER';
     this.username = '';
   }
 }

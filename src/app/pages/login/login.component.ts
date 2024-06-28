@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AlertService } from '../../core/services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,11 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent implements OnInit {
   LoginForm!: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.LoginForm = new FormGroup({
@@ -37,8 +42,9 @@ export class LoginComponent implements OnInit {
     if (this.LoginForm.valid) {
       try {
         await this.authService.login(obj);
+
         console.log('Login successful');
-      } catch (error) {
+      } catch (error: any) {
         console.error('Login failed', error);
       }
     }

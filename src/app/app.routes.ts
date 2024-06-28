@@ -16,6 +16,13 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'user',
+    loadChildren: () =>
+      import('../app/pages/login-operation/login-operation.module').then(
+        (m) => m.LoginOperationModule
+      ),
+  },
+  {
     path: 'signup',
     component: SignupComponent,
   },

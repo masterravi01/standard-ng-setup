@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserInfoService } from './user-info.service';
 import { BehaviorSubject, from, Observable, throwError } from 'rxjs';
 import { catchError, tap, finalize } from 'rxjs/operators';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,8 @@ export class AuthService {
   constructor(
     private crudService: CrudService,
     private router: Router,
-    private userInfoService: UserInfoService
+    private userInfoService: UserInfoService,
+    private alertService: AlertService
   ) {}
 
   get tokenRefreshInProgress(): Observable<boolean> {
@@ -64,9 +66,11 @@ export class AuthService {
       );
       console.log(response);
       this.userInfoService.setUserInfo(response.data);
+      this.alertService.successAlert(response.message);
       this.router.navigate(['/dashboard']);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error during login:', error);
+      this.alertService.errorAlert(error.error.message);
     }
   }
 
