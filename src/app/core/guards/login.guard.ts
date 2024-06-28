@@ -8,7 +8,7 @@ import {
 import { AuthService } from '../services/auth.service';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const authGuard: CanActivateFn = (
+export const loginGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
@@ -16,9 +16,9 @@ export const authGuard: CanActivateFn = (
   const router = inject(Router);
   const isAuth = authService.isAuthenticated() as boolean;
   if (isAuth) {
-    return true;
-  } else {
-    router.navigate(['/login']);
+    router.navigate(['/dashboard']);
     return false;
   }
+
+  return true;
 };
