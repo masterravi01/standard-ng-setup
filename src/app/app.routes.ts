@@ -6,7 +6,6 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { AgGridUseComponent } from './pages/ag-grid-use/ag-grid-use.component';
 import { loginGuard } from './core/guards/login.guard';
 
 export const routes: Routes = [
@@ -27,17 +26,6 @@ export const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
-  },
-  {
-    path: 'agrid',
-    component: AgGridUseComponent,
-  },
-  {
-    path: 'parent',
-    loadChildren: () =>
-      import('../app/pages/learing/learing.module').then(
-        (m) => m.LearingModule
-      ),
   },
   {
     path: '',

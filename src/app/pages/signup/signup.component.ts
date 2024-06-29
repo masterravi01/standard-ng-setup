@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { DataTableComponent } from '../reuse/data-table/data-table.component';
+import { DataTableComponent } from '../../core/reused/data-table/data-table.component';
 
 @Component({
   selector: 'app-signup',

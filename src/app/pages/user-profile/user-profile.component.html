@@ -2,14 +2,6 @@
   {{ game$ | async | json }}
 </div>
 
-<button class="btn btn-primary" (click)="showSuccess()">s</button>
-<button class="btn btn-primary" (click)="showError()">E</button>
-<button class="btn btn-primary" (click)="showConfirmation()">C</button>
-<!-- src/app/components/example/example.component.html -->
-<button class="btn btn-success" (click)="showSuccessAlert()">
-  Show Success
-</button>
-<button class="btn btn-danger" (click)="showErrorAlert()">Show Error</button>
 <app-ag-grid-table
   [rowInputData]="userList"
   [colLabels]="userListLabels"
