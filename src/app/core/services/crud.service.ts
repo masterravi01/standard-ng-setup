@@ -11,25 +11,29 @@ export class CrudService {
 
   async get(endpoint: string, params?: any): Promise<any> {
     return lastValueFrom(
-      this.masterService.Get(`${environment.url}` + endpoint, params)
+      this.masterService.Get(`${environment.apiUrl}` + endpoint, params)
     );
   }
 
   async post(endpoint: string, body?: any, params?: any): Promise<any> {
     return lastValueFrom(
-      this.masterService.Post(`${environment.url}` + endpoint, body, params)
+      this.masterService.Post(`${environment.apiUrl}` + endpoint, body, params)
     );
   }
 
   async put(endpoint: string, body: any): Promise<any> {
     return lastValueFrom(
-      this.masterService.Put(`${environment.url}` + endpoint, body)
+      this.masterService.Put(`${environment.apiUrl}` + endpoint, body)
     );
   }
 
   async delete(endpoint: string, body?: any, params?: any): Promise<any> {
     return lastValueFrom(
-      this.masterService.Delete(`${environment.url}` + endpoint, body, params)
+      this.masterService.Delete(
+        `${environment.apiUrl}` + endpoint,
+        body,
+        params
+      )
     );
   }
 }

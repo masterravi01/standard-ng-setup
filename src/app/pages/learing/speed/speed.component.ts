@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CrudService } from '../../../core/services/crud.service';
 import { APIConstant } from '../../../core/constants/APIConstant';
-import { User } from '../../../core/models/classes/user';
+import { User } from '../../../core/models/classes/user.class';
 import { Observable, of, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 @Component({
