@@ -8,4 +8,7 @@ export const APIConstant = {
   RESET_PASSWORD: 'user/reset-password/', //reset-password/:resetToken
   REGISTER_USER: 'user/register',
   API_TEST: 'admin/apiTest',
+
+  createPaymentOrder: 'payment/createPaymentOrder',
+  validatePayment: 'payment/validatePayment',
 };
