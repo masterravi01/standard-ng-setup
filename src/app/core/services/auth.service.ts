@@ -80,7 +80,7 @@ export class AuthService {
 
   async getUserProfile(): Promise<any> {
     try {
-      const response = await this.crudService.post(APIConstant.GET_USER);
+      const response = await this.crudService.get(APIConstant.GET_USER);
       console.log(response);
       return response;
     } catch (error) {

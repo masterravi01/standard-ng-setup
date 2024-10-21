@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-6">
+    <!-- First Name Section -->
+    <p>{{ firstName }}</p>
+    <input
+      type="text"
+      class="form-control"
+      [value]="firstName"
+      #firstNameInput
+    />
+    <button (click)="updateFirstName(firstNameInput.value)">
+      Change First Name
+    </button>
+
+    <!-- Last Name Section -->
+    <p>{{ lastName }}</p>
+    <input type="text" class="form-control" [value]="lastName" #lastNameInput />
+    <button (click)="updateLastName(lastNameInput.value)">
+      Change Last Name
+    </button>
+
+    <!-- Full Name -->
+    <p>{{ fullName }}</p>
+  </div>
+  <div class="col-6">
+    <!-- Signal-based First Name Section -->
+    <p>{{ signalFirstName() }}</p>
+    <input
+      type="text"
+      class="form-control"
+      [value]="signalFirstName()"
+      #signalFirstNameInput
+    />
+    <button (click)="updateSignalFirstName(signalFirstNameInput.value)">
+      Change Signal First Name
+    </button>
+
+    <!-- Signal-based Last Name Section -->
+    <p>{{ signalLastName() }}</p>
+    <input
+      type="text"
+      class="form-control"
+      [value]="signalLastName()"
+      #signalLastNameInput
+    />
+    <button (click)="updateSignalLastName(signalLastNameInput.value)">
+      Change Signal Last Name
+    </button>
+
+    <!-- Signal-based Full Name -->
+    <p>{{ signalFullName() }}</p>
+  </div>
+</div>
+<input
+  type="text"
+  placeholder="Search..."
+  (input)="onInputChange($event)"
+  [value]="searchTerm"
+/>
+<div style="height: 1500px">
+  <p>Scroll the page to see throttling in action.</p>
+  <p>{{ scrollMessage }}</p>
+</div>

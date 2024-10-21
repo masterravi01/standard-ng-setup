@@ -27,12 +27,23 @@ export const routes: Routes = [
   },
   {
     path: 'signup',
+    title: 'Sign Up',
     component: SignupComponent,
   },
   {
     path: 'checkout',
     component: CheckoutComponent,
   },
+  //also lazy load componet using this sytax
+  // {
+  //   path: 'registeruser',
+  //   loadComponent: () =>
+  //     import(
+  //       './pages/login-operation/register-user/register-user.component'
+  //     ).then((m) => m.RegisterUserComponent),
+  //   title: 'Register User',
+  //   canActivate: [loginGuard],
+  // },
   {
     path: 'agrid',
     component: AgGridUseComponent,

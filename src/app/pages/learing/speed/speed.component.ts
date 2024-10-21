@@ -56,7 +56,7 @@ export class SpeedComponent implements OnInit, OnDestroy {
   //7. async pipe , when use : like example if want show dashboard data here you are not changeing that data & it will only refresh when you are reload or load page at that time yoy should use this. use this with interface
   callApi() {
     this.crudService
-      .post(APIConstant.GET_USER)
+      .get(APIConstant.GET_USER)
       .then((response: any) => {
         console.log(response);
         this.userInfo = response.data;

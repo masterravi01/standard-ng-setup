@@ -1,9 +1,9 @@
 {
-  "name": "hotelpro-frontend",
+  "name": "standard-ng-setup",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4201 --proxy-config proxy.conf.json",
+    "start": "ng serve --port 4202 --proxy-config proxy.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -26,6 +26,7 @@
     "ag-grid-community": "^31.3.2",
     "bootstrap": "^5.3.3",
     "crypto-js": "^4.2.0",
+    "lodash": "^4.17.21",
     "ngx-skeleton-loader": "^9.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -42,6 +43,7 @@
     "@angular/compiler-cli": "^17.0.0",
     "@types/crypto-js": "^4.2.2",
     "@types/jasmine": "~5.1.0",
+    "@types/lodash": "^4.17.7",
     "@typescript-eslint/eslint-plugin": "7.11.0",
     "@typescript-eslint/parser": "7.11.0",
     "eslint": "^8.57.0",

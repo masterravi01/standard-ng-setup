@@ -25,7 +25,10 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.game$ = this.activatedRoute.data.pipe(
-      map((data: { [x: string]: any }) => data['userDetails']?.data)
+      map((data: { [x: string]: any }) => {
+        console.log(data);
+        data['userDetails']?.data;
+      })
     );
     this.getUser();
     // this.game$.subscribe((data) => console.log(data)); // Add this line to log the data for debugging

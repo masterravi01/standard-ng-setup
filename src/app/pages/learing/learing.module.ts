@@ -9,6 +9,7 @@ import { ChildComponent } from './child/child.component';
 import { MybtnComponent } from './mybtn/mybtn.component';
 import { SpeedComponent } from './speed/speed.component';
 import { ReuseAlertComponent } from './reuse-alert/reuse-alert.component';
+import { LearnNewComponent } from './learn-new/learn-new.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'parent', pathMatch: 'full' },
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'speed',
     component: SpeedComponent,
+  },
+  {
+    path: 'learn',
+    component: LearnNewComponent,
   },
 ];
 

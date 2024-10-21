@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
     this.userInfo = u?.user;
     console.log(this.userInfo);
     this.crudService
-      .post(APIConstant.GET_USER)
+      .get(APIConstant.GET_USER)
       .then((response: any) => {
         console.log(response);
       })
